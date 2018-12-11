@@ -3,7 +3,7 @@ package com.studio.dictionaries;
 import java.util.*;
 
 public class ProjectDict {
-    HashMap<String,Set<String>> theProjectDict;
+    private HashMap<String,Set<String>> theProjectDict;
     public ProjectDict (){
         theProjectDict = new HashMap();
 

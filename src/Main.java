@@ -4,7 +4,7 @@ import com.studio.dictionaries.ProjectDict;
 import com.studio.dictionaries.RepoDict;
 
 public class Main {
-    static String mijnNaam;
+    static private String mijnNaam;
     public static void main(String[] args) {
         Logger l = Logger.getLogger(Main.class.getName());
         Vakkenpakket mijnPakket = new Vakkenpakket("wieger");
