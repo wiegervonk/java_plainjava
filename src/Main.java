@@ -19,8 +19,8 @@ public class Main {
 */
 
         RepoDict myRepoDict = new RepoDict("repo1");
-//        myRepoDict.put ( "repo2" );
-//        myRepoDict.put ( "repo2", {"br2a","br2b"});
+        myRepoDict.RepoAddBranch( "repo1", "br1a" );
+        myRepoDict.RepoAddBranch( "repo1", "br1b" );
         System.out.println("myRepoDict = " + myRepoDict );
 
         try {
