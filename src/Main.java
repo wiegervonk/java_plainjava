@@ -18,10 +18,14 @@ public class Main {
         String s = myProjectDict.getBranches("proj1");
 */
 
-        RepoDict myRepoDict = new RepoDict("repo1");
-        myRepoDict.RepoAddBranch( "repo1", "br1a" );
-        myRepoDict.RepoAddBranch( "repo1", "br1b" );
-        System.out.println("myRepoDict = " + myRepoDict );
+        RepoDict myRepoDict = new RepoDict();
+        String r = "repo-abc", b = "br-abc";
+        myRepoDict.addRepoBranch( "repo1", "br1a" );
+        myRepoDict.addRepoBranch( "repo1", "br1b" );
+        myRepoDict.addRepoBranch( "repo-xyz", "br-xyz1b" );
+        myRepoDict.addRepoBranch( r, b );
+        r = b = "nieuwe waarde";
+        System.out.println("myRepoDict = " + myRepoDict.repoDict );
 
         try {
             new ReadCSVFile("c:\\temp\\samplecsvfile.csv");
