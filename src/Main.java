@@ -3,6 +3,8 @@ import com.java_plainjava.readcsvfile.*;
 import com.studio.dictionaries.ProjectDict;
 import com.studio.dictionaries.RepoDict;
 
+/* dit was toegevoeggd door Npp, 2e keer */
+
 public class Main {
     static private String mijnNaam;
     public static void main(String[] args) {
