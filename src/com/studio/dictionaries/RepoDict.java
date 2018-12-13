@@ -1,21 +1,51 @@
 package com.studio.dictionaries;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import com.studio.util.Logging;
+import com.studio.util.StringSet;
 
-public class RepoDict extends HashMap<String,RepoStruct> {
-//    static repoDict
-    public RepoDict ( String repo ) {
-        RepoStruct empty = new RepoStruct();
-        this.put ( repo, empty );
+import java.util.HashMap;
+import java.util.logging.Level;
+
+public class RepoDict implements java.io.Serializable {
+    public static HashMap<String,RepoStruct> repoDict;
+
+
+    public RepoDict ( ) {
+        repoDict = new HashMap<String,RepoStruct>();
     }
-    public void RepoAddBranch ( String repo, String branch ) {
-        if ( this.containsKey(repo) ) {
-            this.get(repo).add(branch);
+    public void addRepo (String repo, String desc) {
+        repoDict.put ( repo, new RepoStruct(desc) );
+    }
+    public void addRepoBranch ( String repo, String branch ) {
+        if ( !repoDict.containsKey(repo) ) {
+            repoDict.put ( repo, new RepoStruct("") );
+            Logging.WriteLog (Level.CONFIG, "addRepoBranch: class = " + RepoDict.class);
         }
+        repoDict.get(repo).branchSet.add(branch);
+    }
+    public String toString(){
+        String outStr = "";
+        boolean firstRepo = true;
+        for ( String key: repoDict.keySet() ) {
+            if ( ! firstRepo ) outStr = outStr + ";";
+            outStr = outStr.concat("{repo=" + key);
+            RepoStruct value = repoDict.get(key);
+            String desc = value.description;
+            if (desc.length() > 0) outStr = outStr.concat("(desc='" + desc + "')");
+            outStr = outStr + value.branchSet.toString(",branches=(", ",",")" );
+            outStr = outStr.concat("}");
+            firstRepo = false;
+        }
+        return outStr;
     }
 }
 
-class RepoStruct extends HashSet<String> {
-
+class RepoStruct{
+    public String description;
+    public StringSet branchSet;
+    public StringSet moduleSet;
+    RepoStruct ( String desc ){
+        description = desc;
+        branchSet = new StringSet();
+    }
 }
